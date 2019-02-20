@@ -1,0 +1,36 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Agenda{% endblock %}
+
+{% block background %}{% load static %}{% static 'core/img/agenda.jpg' %}{% endblock %}
+
+{% block headers %}
+<h1>Agenda</h1>
+<span class="subheading">Consultorio</span>
+{% endblock %}
+{% block content %}
+  <table class="table table-bordered">
+  <thead>
+    <tr style="background:GAINSBORO;justify-content: center;text-align:center;font-weight: 600; color:black">
+      <td style="border-bottom:3px solid #777;border-top:3px solid #777;border-left:3px solid #777;border-right:3px solid #777">Fecha y Hora de Turno</td>
+      <td style="border-bottom:3px solid #777;border-top:3px solid #777;border-right:3px solid #777">Paciente</td>      
+    </tr>
+  </thead>
+  <tbody style="vertical-align: middle;text-align:center;">
+    {% if object_list %}
+    {% for turno in object_list %}    
+    <tr style="border-left:3px solid #777;border-bottom:3px solid #777">
+      <td style="border-bottom:3px solid #777;border-right:3px solid #777">{{ turno.fecha }}</td>
+      {% if turno.persona%}                
+        <td style="border-right:3px solid #777"><a href="{% url 'turnos:paciente_listar' turno.persona %}"><b>{{turno.persona}}</b></a></td>
+      {% else %}
+        <td style="border-right:3px solid #777"><b>No Reservado</b></a></td>
+      {% endif %}
+    </tr>     
+    {% endfor %}
+    {% else %}
+      <h1>No hay Turnos Reservados</h1>
+    {% endif %}
+  </tbody>
+</table>
+{% endblock %}  
