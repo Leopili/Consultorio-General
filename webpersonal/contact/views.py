@@ -19,7 +19,7 @@ def contact(request):
                 "Consultorio: Nuevo mensaje",
                 "De {} <{}>\n\nEscribió:\n\n{}".format(name, email, content),
                 "no-contestar@inbox.mailtrap.io",
-                ["lmpili77@gmail.com"],
+                ["pnasarov@gmail.com"],
                 reply_to=[email]
             )
 
